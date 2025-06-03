@@ -82,23 +82,23 @@ def load_config():
 
 def generate_vm_payload():
     return {
-        "az_id": "d25b387b-ecb5-44f3-8e17-9c81516e208f",
+        "az_id": "2ec9dfc4-ed63-4246-a063-d1f51a78b25b",  # ✅ Demo-ITG
         "location": {"id": "cluster"},
         "storage_tag_id": "11111111-1111-1111-1111-111111111111",
-        "image_id": "5624ccc9-5c2b-4f1e-9c64-f001e6099591",
+        "image_id": "f6455cf6-1a29-4aa2-bf8c-f2de20fe6b55",  # ✅ Windows 10 image (จากแถว iloc 11)
         "cores": 2,
         "sockets": 1,
         "memory_mb": 4096,
         "count": 1,
-        "name": "Terraform_Windows10",
+        "name": "Terraform_Windows10_ITG",
         "disks": [{
             "type": "derive_disk",
             "size_mb": 81920
         }],
         "networks": [{
-            "vpc_id": "bcab8abd-6689-43c7-9ba3-5d445925ca16",
-            "subnet_id": "7ad463da-d3e6-471f-ac18-8475f59d24e6",
-            "vif_id": "vif-00112233445566778899",
+            "vpc_id": "74f7547c-6491-4f8e-8aa5-b376f7b48e0c",
+            "subnet_id": "96e55c71-5a78-4641-8944-44aa2c9ac3f5",
+            "vif_id": "vif-891f0e12bc8b44c29bb3a275122c0e59",
             "connect": 1,
             "model": "virtio"
         }],
