@@ -82,28 +82,29 @@ def load_config():
 
 def generate_vm_payload():
     return {
-        "az_id": "2ec9dfc4-ed63-4246-a063-d1f51a78b25b",  # ✅ Demo-ITG
+        "az_id": "2ec9dfc4-ed63-4246-a063-d1f51a78b25b",
         "location": {"id": "cluster"},
         "storage_tag_id": "11111111-1111-1111-1111-111111111111",
-        "image_id": "f6455cf6-1a29-4aa2-bf8c-f2de20fe6b55",  # ✅ Windows 10 image (จากแถว iloc 11)
+        "image_id": "089f3c0d-0532-4224-819b-4e68fa943f6f",  # ✅ Windows 10 Image จริง
         "cores": 2,
         "sockets": 1,
         "memory_mb": 4096,
         "count": 1,
-        "name": "Terraform_Windows10_ITG",
+        "name": "Terraform_Windows10_DemoITG",
         "disks": [{
             "type": "derive_disk",
             "size_mb": 81920
         }],
         "networks": [{
-            "vpc_id": "74f7547c-6491-4f8e-8aa5-b376f7b48e0c",
-            "subnet_id": "96e55c71-5a78-4641-8944-44aa2c9ac3f5",
-            "vif_id": "vif-891f0e12bc8b44c29bb3a275122c0e59",
+            "vpc_id": "f2742486-2e3d-4e6c-9f6e-0a7e53fb2407",
+            "subnet_id": "6c3f62bd-3f8e-4a87-bc90-c91d42276a91",
+            "vif_id": "8c062cd0-eaa3-4c47-881f-b8c7c25759d7",
             "connect": 1,
             "model": "virtio"
         }],
         "power_on": 1
     }
+
 
 def write_payload_to_file(payload, filename="payload.json"):
     try:
