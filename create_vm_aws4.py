@@ -82,15 +82,15 @@ def load_config():
 
 def generate_vm_payload():
     return {
-        "az_id": "2ec9dfc4-ed63-4246-a063-d1f51a78b25b",
+        "az_id": "2ec9dfc4-ed63-4246-a063-d1f51a78b25b",  # ✅ Zone: Demo-ITG
         "location": {"id": "cluster"},
         "storage_tag_id": "11111111-1111-1111-1111-111111111111",
-        "image_id": "21f937d-b3c3-4dde-b6b5-5b696cd213ae",  # ✅ Windows 10 Image จริง
+        "image_id": "8a3cb0e7-8465-46a0-8026-28706214240b",  # ✅ Image: Centos7_Template_Demo-ITG
         "cores": 2,
         "sockets": 1,
         "memory_mb": 4096,
         "count": 1,
-        "name": "Terraform_Windows10_DemoITG",
+        "name": "Terraform_Centos7_ITG",
         "disks": [{
             "type": "derive_disk",
             "size_mb": 81920
