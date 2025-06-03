@@ -81,11 +81,18 @@ def load_config():
         return None
 
 def generate_vm_payload():
+    az_id = "d25b387b-ecb5-44f3-8e17-9c81516e208f"
+    image_id = "5624ccc9-5c2b-4f1e-9c64-f001e6099591"  # ✅ Windows 10 image ID
+    vpc_id = "bcab8abd-6689-43c7-9ba3-5d445925ca16"
+    subnet_id = "7ad463da-d3e6-471f-ac18-8475f59d24e6"
+    vif_id = "vif-00112233445566778899"  # ⚠️ ต้องแทนที่ด้วยค่า VIF จริงที่ระบบอนุญาต
+    storage_tag_id = "8a34ef9a-8be3-40f3-b5a4-b8ef68e79db2"
+
     return {
-        "az_id": "d25b387b-ecb5-44f3-8e17-9c81516e208f",
+        "az_id": az_id,
         "location": {"id": "cluster"},
-        "storage_tag_id": "8a34ef9a_vs_vol_rep2",
-        "image_id": "5624ccc9-5c2b-4f1e-9c64-f001e6099591",
+        "storage_tag_id": storage_tag_id,
+        "image_id": image_id,
         "cores": 2,
         "sockets": 1,
         "memory_mb": 4096,
@@ -96,9 +103,9 @@ def generate_vm_payload():
             "size_mb": 81920
         }],
         "networks": [{
-            "vpc_id": "bcab8abd-6689-43c7-9ba3-5d445925ca16",
-            "subnet_id": "7ad463da-d3e6-471f-ac18-8475f59d24e6",
-            "vif_id": "vif-00112233445566778899",
+            "vpc_id": vpc_id,
+            "subnet_id": subnet_id,
+            "vif_id": vif_id,
             "connect": 1,
             "model": "virtio"
         }],
