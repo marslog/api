@@ -3,6 +3,7 @@ import hmac
 import requests
 import datetime
 import json
+import os
 from pprint import pprint
 
 def sign(key, msg):
@@ -24,7 +25,7 @@ def aws4_get(path, scp_ip, access_key, secret_key):
     t = datetime.datetime.utcnow()
     amz_date = t.strftime('%Y%m%dT%H%M%SZ')
     date_stamp = t.strftime('%Y%m%d')
-    payload_hash = hashlib.sha256(b'').hexdigest()
+    payload_hash = hashlib.sha256("".encode('utf-8')).hexdigest()
 
     canonical_headers = (
         f'content-type:{content_type}\n'
@@ -56,12 +57,12 @@ def aws4_get(path, scp_ip, access_key, secret_key):
     }
 
     try:
-        response = requests.get(endpoint, headers=headers, verify=False)
-        response.raise_for_status()
-        return response.json()
+        res = requests.get(endpoint, headers=headers, verify=False)
+        res.raise_for_status()
+        return res.json()
     except requests.exceptions.RequestException as e:
         print(f"❌ GET request failed: {e}")
-        if e.response is not None:
+        if hasattr(e, 'response') and e.response is not None:
             print(f"Response content: {e.response.text}")
         return None
 
@@ -79,28 +80,42 @@ def load_config():
         print(f"❌ Error loading terraform.tfvars: {e}")
         return None
 
-if __name__ == "__main__":
-    config = load_config()
-    if not config:
-        exit(1)
-
-    access_key = config.get("access_key")
-    secret_key = config.get("secret_key")
-    scp_ip = config.get("scp_ip")
-
-    endpoints = [
+def fetch_all_resources():
+    paths = [
         "/janus/20180725/azs",
         "/janus/20180725/images",
         "/janus/20180725/vpcs",
         "/janus/20180725/storage-tags",
         "/janus/20180725/subnets",
-        "/janus/20180725/vifs"
+        "/janus/20180725/servers"
     ]
 
-    for path in endpoints:
-        print(f"\n📡 GET {path}")
-        res = aws4_get(path, scp_ip, access_key, secret_key)
-        if res:
-            pprint(res)
+    config = load_config()
+    if not config:
+        print("❌ Failed to load terraform.tfvars")
+        return
+
+    access_key = config.get("access_key")
+    secret_key = config.get("secret_key")
+    scp_ip = config.get("scp_ip")
+
+    all_results = {}
+
+    for path in paths:
+        print(f"\n📦 Fetching {path} ...")
+        response = aws4_get(path, scp_ip, access_key, secret_key)
+        if response:
+            all_results[path] = response
+            pprint(response)
         else:
-            print("⚠️  No data received.")
+            print(f"❌ Failed to fetch {path}")
+
+    try:
+        with open("scp_data.json", "w") as f:
+            json.dump(all_results, f, indent=2)
+        print("\n✅ Exported all data to scp_data.json")
+    except Exception as e:
+        print(f"❌ Failed to write JSON: {e}")
+
+if __name__ == "__main__":
+    fetch_all_resources()
