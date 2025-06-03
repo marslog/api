@@ -98,7 +98,6 @@ def generate_vm_payload():
         "advance_param": {
             "boot_order": "c",
             "onboot": 0,
-            "schedoff": 0,
             "abnormal_recovery": 1,
             "cpu_hotplug": 0,
             "mem_hotplug": 0,
@@ -119,8 +118,7 @@ def generate_vm_payload():
             "connect": 1,
             "model": "virtio",
             "host_tso": 0,
-            "vpc_id": "a5bc06ae-79f8-4498-a5b1-9dc3adbd011b",
-            "subnet_id": "xxxx"
+            "vpc_id": "a5bc06ae-79f8-4498-a5b1-9dc3adbd011b"
             }
         ],
         "power_on": 0
