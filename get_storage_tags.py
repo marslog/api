@@ -3,7 +3,6 @@ import hmac
 import requests
 import datetime
 import json
-from pprint import pprint
 
 def sign(key, msg):
     return hmac.new(key, msg.encode('utf-8'), hashlib.sha256).digest()
@@ -95,8 +94,9 @@ if __name__ == "__main__":
 
     print("📡 Fetching storage-tag list from SCP...")
     response = aws4_get("/janus/20180725/storage-tags", scp_ip, access_key, secret_key)
-    if response:
+    if response and response.get('success'):
         print("\n✅ Storage Tags:")
-        pprint(response)
+        for tag in response.get('data', []):
+            print(f"🗂️ ID: {tag.get('id')} | Name: {tag.get('name')}")
     else:
         print("\n❌ Failed to fetch storage-tag list")
