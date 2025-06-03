@@ -85,7 +85,7 @@ def generate_vm_payload():
         "az_id": "2ec9dfc4-ed63-4246-a063-d1f51a78b25b",
         "location": {"id": "cluster"},
         "storage_tag_id": "11111111-1111-1111-1111-111111111111",
-        "image_id": "089f3c0d-0532-4224-819b-4e68fa943f6f",  # ✅ Windows 10 Image จริง
+        "image_id": "21f937d-b3c3-4dde-b6b5-5b696cd213ae",  # ✅ Windows 10 Image จริง
         "cores": 2,
         "sockets": 1,
         "memory_mb": 4096,
