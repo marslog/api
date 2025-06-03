@@ -81,11 +81,11 @@ def load_config():
         return None
 
 def generate_vm_payload():
-    az_id = "d25b387b-ecb5-44f3-8e17-9c81516e208f"
+    az_id = "ba490dee-1e81-40e9-b992-584dd6381563"  # ✅ Demo-VRC zone
     image_id = "5624ccc9-5c2b-4f1e-9c64-f001e6099591"  # ✅ Windows 10 image ID
-    vpc_id = "bcab8abd-6689-43c7-9ba3-5d445925ca16"
-    subnet_id = "7ad463da-d3e6-471f-ac18-8475f59d24e6"
-    vif_id = "vif-00112233445566778899"  # ⚠️ ต้องแทนที่ด้วยค่า VIF จริงที่ระบบอนุญาต
+    vpc_id = "a8718d69-8d3e-4e1d-b8f0-90f0e3d95b70"
+    subnet_id = "0e7d13f9-f4ad-4c2e-88ef-9a008a1a7fd2"
+    vif_id = "vif-2415e11d-3f24-4dc3-b0d3-5b3ea7802ab5"  # ✅ ใช้ได้จริงจาก zone Demo-VRC
     storage_tag_id = "Performance_Sensitive_Storage"
 
     return {
