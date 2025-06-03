@@ -86,7 +86,7 @@ def generate_vm_payload():
     vpc_id = "bcab8abd-6689-43c7-9ba3-5d445925ca16"
     subnet_id = "7ad463da-d3e6-471f-ac18-8475f59d24e6"
     vif_id = "vif-00112233445566778899"  # ⚠️ ต้องแทนที่ด้วยค่า VIF จริงที่ระบบอนุญาต
-    storage_tag_id = "8a34ef9a-8be3-40f3-b5a4-b8ef68e79db2"
+    storage_tag_id = "Performance_Sensitive_Storage"
 
     return {
         "az_id": az_id,
