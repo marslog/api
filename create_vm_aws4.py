@@ -82,31 +82,50 @@ def load_config():
 
 def generate_vm_payload():
     return {
+
         "az_id": "2ec9dfc4-ed63-4246-a063-d1f51a78b25b",
-        "location": {"id": "cluster"},
+        "location": {
+            "id": "cluster"
+        },
         "storage_tag_id": "11111111-1111-1111-1111-111111111111",
-        "image_id": "4c80d41a-98a7-45ba-816b-f16d20c7b45e",  # ✅ ISO image
-        "cores": 2,
+        "image_id": "fbecf65e-fda0-4b55-bbdf-aac1034cd89e",
+        "cores": 1,
         "sockets": 1,
-        "memory_mb": 4096,
+        "memory_mb": 1024,
         "count": 1,
-        "name": "Terraform_CentOS_6_Manual",
-        "disks": [{
+        "name": "terraform_wasin",
+        "description": "",
+        "advance_param": {
+            "boot_order": "c",
+            "onboot": 0,
+            "schedoff": 0,
+            "abnormal_recovery": 1,
+            "cpu_hotplug": 0,
+            "mem_hotplug": 0,
+            "balloon_memory": 0,
+            "hugepage_memory": 0
+        },
+        "disks": [
+            {
+            "id": "ide0",
             "type": "derive_disk",
+            "preallocate": 0,
             "size_mb": 81920
-        }],
-        "networks": [{
-            "vpc_id": "bcab8abd-6689-43c7-9ba3-5d445925ca16",
-            "subnet_id": "7ad463da-d3e6-471f-ac18-8475f59d24e6",
-            "vif_id": "8c062cd0-eaa3-4c47-881f-b8c7c25759d7",
+            }
+        ],
+        "networks": [
+            {
+            "vif_id": "4000",
             "connect": 1,
-            "model": "virtio"
-        }],
-         "boot_iso": {
-            "id": "4c80d41a-98a7-45ba-816b-f16d20c7b45e"  # ✅ ต้องใส่เพิ่มสำหรับ boot ISO
-              },
-        "power_on": 1
-    }
+            "model": "virtio",
+            "host_tso": 0,
+            "vpc_id": "xxxx",
+            "subnet_id": "xxxx"
+            }
+        ],
+        "power_on": 0
+        }
+
 
 
 def write_payload_to_file(payload, filename="payload.json"):
