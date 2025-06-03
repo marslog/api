@@ -84,7 +84,7 @@ def generate_vm_payload():
     return {
         "az_id": "d25b387b-ecb5-44f3-8e17-9c81516e208f",
         "location": {"id": "cluster"},
-        "storage_tag_id": "8a34ef9a_vs_vol_rep2",
+        "storage_tag_id": "11111111-1111-1111-1111-111111111111",
         "image_id": "5624ccc9-5c2b-4f1e-9c64-f001e6099591",
         "cores": 2,
         "sockets": 1,
