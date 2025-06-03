@@ -119,7 +119,7 @@ def generate_vm_payload():
             "connect": 1,
             "model": "virtio",
             "host_tso": 0,
-            "vpc_id": "xxxx",
+            "vpc_id": "a5bc06ae-79f8-4498-a5b1-9dc3adbd011b",
             "subnet_id": "xxxx"
             }
         ],
