@@ -82,26 +82,29 @@ def load_config():
 
 def generate_vm_payload():
     return {
-        "az_id": "2ec9dfc4-ed63-4246-a063-d1f51a78b25b",  # ✅ Zone: Demo-ITG
+        "az_id": "2ec9dfc4-ed63-4246-a063-d1f51a78b25b",
         "location": {"id": "cluster"},
         "storage_tag_id": "11111111-1111-1111-1111-111111111111",
-        "image_id": "8a3cb0e7-8465-46a0-8026-28706214240b",  # ✅ Image: Centos7_Template_Demo-ITG
+        "image_id": "4c80d41a-98a7-45ba-816b-f16d20c7b45e",  # ✅ ISO image
         "cores": 2,
         "sockets": 1,
         "memory_mb": 4096,
         "count": 1,
-        "name": "Terraform_Centos7_ITG",
+        "name": "Terraform_CentOS_6_Manual",
         "disks": [{
             "type": "derive_disk",
             "size_mb": 81920
         }],
         "networks": [{
-            "vpc_id": "f2742486-2e3d-4e6c-9f6e-0a7e53fb2407",
-            "subnet_id": "6c3f62bd-3f8e-4a87-bc90-c91d42276a91",
+            "vpc_id": "bcab8abd-6689-43c7-9ba3-5d445925ca16",
+            "subnet_id": "7ad463da-d3e6-471f-ac18-8475f59d24e6",
             "vif_id": "8c062cd0-eaa3-4c47-881f-b8c7c25759d7",
             "connect": 1,
             "model": "virtio"
         }],
+         "boot_iso": {
+            "id": "4c80d41a-98a7-45ba-816b-f16d20c7b45e"  # ✅ ต้องใส่เพิ่มสำหรับ boot ISO
+              },
         "power_on": 1
     }
 
