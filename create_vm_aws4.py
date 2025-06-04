@@ -93,26 +93,25 @@ def generate_vm_payload():
         "memory_mb": 1024,
         "count": 1,
         "name": "terraform_chet",
-        "description": "",
         "disks": [
             {
-            "id": "ide0",
-            "type": "derive_disk",
-            "preallocate": 0,
-            "size_mb": 81920
+                "id": "ide0",
+                "type": "derive_disk",
+                "size_mb": 81920
             }
         ],
         "networks": [
             {
-            "vif_id": "4000",
-            "connect": 1,
-            "model": "virtio",
-            "host_tso": 0,
-            "vpc_id": "a5bc06ae-79f8-4498-a5b1-9dc3adbd011b"
+                "vif_id": "vnet0",  # 🔄 ตรวจสอบว่าเป็น VIF ID จริงที่ระบบรู้จัก
+                "connect": 1,
+                "model": "virtio",
+                "vpc_id": "a5bc06ae-79f8-4498-a5b1-9dc3adbd011b",
+                "subnet_id": "SUBNET-ID-HERE"  # ✅ หากจำเป็นต้องใส่
             }
         ],
         "power_on": 0
     }
+
 
 def write_payload_to_file(payload, filename="payload.json"):
     try:
