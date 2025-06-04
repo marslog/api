@@ -93,7 +93,7 @@ def generate_vm_payload():
         "sockets": 1,
         "memory_mb": 1024,
         "count": 1,
-        "name": "terraform_wasin",
+        "name": "terraform_chet",
         "description": "",
         "advance_param": {
             "boot_order": "c",
