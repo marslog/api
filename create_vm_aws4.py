@@ -95,15 +95,6 @@ def generate_vm_payload():
         "count": 1,
         "name": "terraform_chet",
         "description": "",
-        "advance_param": {
-            "boot_order": "c",
-            "onboot": 0,
-            "abnormal_recovery": 1,
-            "cpu_hotplug": 0,
-            "mem_hotplug": 0,
-            "balloon_memory": 0,
-            "hugepage_memory": 0
-        },
         "disks": [
             {
             "id": "ide0",
