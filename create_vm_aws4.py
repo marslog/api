@@ -82,7 +82,6 @@ def load_config():
 
 def generate_vm_payload():
     return {
-
         "az_id": "2ec9dfc4-ed63-4246-a063-d1f51a78b25b",
         "location": {
             "id": "cluster"
@@ -113,9 +112,7 @@ def generate_vm_payload():
             }
         ],
         "power_on": 0
-        }
-
-
+    }
 
 def write_payload_to_file(payload, filename="payload.json"):
     try:
