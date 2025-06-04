@@ -82,7 +82,7 @@ def load_config():
 
 def generate_vm_payload():
     return {
-        "az_id": "2ec9dfc4-ed63-4246-a063-d1f51a78b25b",
+          "az_id": "2ec9dfc4-ed63-4246-a063-d1f51a78b25b",
         "location": {
             "id": "cluster"
         },
@@ -93,24 +93,36 @@ def generate_vm_payload():
         "memory_mb": 1024,
         "count": 1,
         "name": "terraform_chet",
+        "description": "",
+        "advance_param": {
+            "boot_order": "c",
+            "onboot": 0,
+            "schedopt": 0,
+            "abnormal_recovery": 1,
+            "cpu_hotplug": 0,
+            "mem_hotplug": 0,
+            "balloon_memory": 0,
+            "hugepage_memory": 0
+        },
         "disks": [
             {
-                "id": "ide0",
-                "type": "derive_disk",
-                "size_mb": 81920
+            "id": "ide0",
+            "type": "derive_disk",
+            "preallocate": 0,
+            "size_mb": 81920
             }
         ],
         "networks": [
             {
-                "vif_id": "vnet0",  # 🔄 ตรวจสอบว่าเป็น VIF ID จริงที่ระบบรู้จัก
-                "connect": 1,
-                "model": "virtio",
-                "vpc_id": "a5bc06ae-79f8-4498-a5b1-9dc3adbd011b",
-                "subnet_id": "SUBNET-ID-HERE"  # ✅ หากจำเป็นต้องใส่
+            "vif_id": "net0",
+            "connect": 1,
+            "model": "virtio",
+            "host_iso": 0,
+            "vpc_id": "a5bc06ae-79f8-4498-a5b1-9dc3adbd011b",
             }
         ],
         "power_on": 0
-    }
+        }
 
 
 def write_payload_to_file(payload, filename="payload.json"):
