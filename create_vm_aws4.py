@@ -117,11 +117,10 @@ def generate_vm_payload():
             "vif_id": "net0",
             "connect": 1,
             "model": "virtio",
-            "host_iso": 0,
             "vpc_id": "a5bc06ae-79f8-4498-a5b1-9dc3adbd011b",
             }
         ],
-        "power_on": 0
+        "power_on": 1
         }
 
 
