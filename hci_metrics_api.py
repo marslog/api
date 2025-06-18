@@ -1,33 +1,26 @@
-from flask import Flask, jsonify
-import json
-from create_vm_aws4 import aws4_post, load_config
-
-app = Flask(__name__)
-
 @app.route("/api/metrics")
 def hci_metrics():
     config = load_config()
-    payload = {}
+    
+    # เปลี่ยน method เป็น GET แบบใช้ AWS4 (ถ้าคุณมีฟังก์ชัน get แบบ AWS4)
     response = aws4_post(
-        "/janus/20180725/servers/list",
+        "/janus/20180725/hosts",     # ✅ แก้ path
         scp_ip=config["scp_ip"],
         access_key=config["access_key"],
         secret_key=config["secret_key"],
-        payload=payload
+        payload={}                   # ไม่มี payload
     )
 
     if not response or "data" not in response:
         return jsonify([])
 
+    # สร้าง metrics จาก response (อาจต้องเปลี่ยน field name ตามที่ response ส่งกลับมา)
     metrics = []
-    for vm in response["data"].get("data", []):
+    for host in response["data"]:
         metrics.append({
-            "name": vm["name"],
-            "cpu": vm.get("cpu_usage", 0),
-            "memory": vm.get("mem_usage", 0)
+            "host_name": host.get("name", "N/A"),
+            "cpu_usage": host.get("cpu_usage", 0),
+            "memory_usage": host.get("mem_usage", 0)
         })
 
     return jsonify(metrics)
-
-if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=5000)
